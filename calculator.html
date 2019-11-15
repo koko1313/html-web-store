@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Калкулатор | Някаква фирма</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="icon" href="images/favicon.ico">
+	<script type="text/javascript" src="script.js"></script>
+	<style>
+		table {border: 4px solid black}
+		#calculator {background-color: #FF9933; opacity: 0.7; transition: 0.5s}
+		#calculator:hover {opacity: 1}
+		#calculator:focus {opacity: 1}
+		#calculator td {text-align: center; vertical-align: middle; height: 50px; width: 50px; cursor: pointer; font-weight: bold; border: 2px solid #333; border-radius: 5px; transition: 0.1s;}
+		#calculator td:hover {background-color: #FF6600!important; color: white}
+		#calculator td:active {border: 2px solid red}
+	</style>
+	<script>
+		
+		//Проверява дали е натиснат Shift
+		function shiftDown() {return(window.event.shiftKey)}
+		
+		//keylistener
+		document.addEventListener('keydown', function(evt){			
+			var display = document.getElementById("display");
+			var pressedKey = evt.keyCode;
+			var calculatorButton = false; // ако е натиснат бутон от калкулатора ще стане true
+			switch(pressedKey) {
+				case 96 : 
+				case 48 : buttonPress(document.getElementById("btn0")); calculatorButton=true; break;
+				case 97 : 
+				case 49 : buttonPress(document.getElementById("btn1")); calculatorButton=true; break;
+				case 98 : 
+				case 50 : buttonPress(document.getElementById("btn2")); calculatorButton=true; break;
+				case 99 : 
+				case 51 : buttonPress(document.getElementById("btn3")); calculatorButton=true; break;
+				case 100 : 
+				case 52 : buttonPress(document.getElementById("btn4")); calculatorButton=true; break;
+				case 101 : 
+				case 53 : buttonPress(document.getElementById("btn5")); calculatorButton=true; break;
+				case 102 : 
+				case 54 : buttonPress(document.getElementById("btn6")); calculatorButton=true; break;
+				case 103 : 
+				case 55 : buttonPress(document.getElementById("btn7")); calculatorButton=true; break;
+				case 104 : 
+				case 56 : 
+					if(shiftDown()) buttonPress(document.getElementById("btnMul"));
+					else buttonPress(document.getElementById("btn8")); calculatorButton=true; break;
+				case 105 : 
+				case 57 : buttonPress(document.getElementById("btn9")); calculatorButton=true; break;
+				case 110 : 
+				case 190 : 
+				case 188 : buttonPress(document.getElementById("btnDec")); calculatorButton=true; break;
+				case 107 : buttonPress(document.getElementById("btnPl")); calculatorButton=true; break;
+				case 187 : 
+					if(shiftDown()) buttonPress(document.getElementById("btnPl")); 
+					else buttonPress(document.getElementById("btnEq")); calculatorButton=true; break;
+				case 109 : 
+				case 189 : buttonPress(document.getElementById("btnMn")); calculatorButton=true; break;
+				case 106 : buttonPress(document.getElementById("btnMul")); calculatorButton=true; break;
+				case 111 : 
+				case 191 : buttonPress(document.getElementById("btnDiv")); calculatorButton=true; break;
+				case 8 : 
+				case 46 : buttonPress(document.getElementById("btnC")); calculatorButton=true; break;
+				case 13 : buttonPress(document.getElementById("btnEq")); calculatorButton=true; break;
+			}
+			if(calculatorButton || shiftDown()) document.getElementById("calculator").focus(); // ако е натиснат бутон от калкулатора - фокусираме калкулатора
+			else document.getElementById("calculator").blur();
+		}, false);
+		
+	
+		var result = 0;
+		var firstInput = true;
+		var lastSymbol = '';
+		
+		function solution(symbol) {
+			if(firstInput) {
+				result = parseFloat(display.value); 
+				firstInput = false;
+				display.placeholder = display.value;
+				display.value = "";
+			} else {
+				if(symbol=='+') result += parseFloat(display.value); else
+				if(symbol=='-') result -= parseFloat(display.value); else
+				if(symbol=='*') result *= parseFloat(display.value); else
+				if(symbol=='/') result /= parseFloat(display.value);
+				display.placeholder = display.value;
+				display.value = "";
+			}
+			lastSymbol = symbol;
+		}
+		
+		function dds() {
+			var x = parseFloat(display.value);
+			var dds = x*(20/100);
+			display.value = x+dds;
+		}
+		
+		
+		var allTd = document.getElementsByTagName("td");
+		
+		function removePressedColor(){
+			for(var i=0; i < allTd.length; i++) allTd[i].style.backgroundColor = "transparent"; // правим всички бутони прозрачни
+		}
+		
+		function pressedButton(number) {
+			removePressedColor();
+			allTd[number].style.backgroundColor = "#FF6600"; // правим натиснатия бутон да изглежда натиснат
+		}
+		
+		function buttonPress(button){		
+			var value = button.innerHTML;
+			var display = document.getElementById("display");
+			
+			switch(value) {
+				case '1' :
+				case '2' :
+				case '3' :
+				case '4' :
+				case '5' :
+				case '6' :
+				case '7' :
+				case '8' :
+				case '9' :
+				case '0' :
+				case 'C' :
+				case '=' :
+				case '.' :
+					removePressedColor();
+					button.style.backgroundColor = "#FF6600";
+					setTimeout(function() { button.style.backgroundColor = "transparent" }, 100);
+			}
+						
+			switch(value) {
+				case '+' : equal(); solution('+'); pressedButton(5); break;
+				case '-' : equal(); solution('-'); pressedButton(6); break;
+				case '*' : equal(); solution('*'); pressedButton(10); break;
+				case '/' : equal(); solution('/'); pressedButton(11); break;
+				case "+ ДДС" : equal(); dds(); removePressedColor(); break;
+				case 'C' : 
+					display.placeholder = 0;
+					display.value = "";
+					result=0;
+					firstInput = true;
+					break;
+				case '=' : equal(); break;
+				default : 
+					if(lastSymbol=='=') {
+						display.value = value;
+						lastSymbol='';
+					}
+					else display.value += value;
+			}			
+		}
+		
+		function equal() {
+			firstInput = true;
+			switch (lastSymbol) {
+				case '+' : result += parseFloat(display.value); break;
+				case '-' : result -= parseFloat(display.value); break;
+				case '*' : result *= parseFloat(display.value); break;
+				case '/' : result /= parseFloat(display.value); break;
+				default : result = parseFloat(display.value);
+			}
+			if(display.value == "") result = parseFloat(display.placeholder);
+			display.value = result; // извеждаме го на екрана
+			lastSymbol = '=';
+		}
+	</script>
+</head>
+<body onLoad="equalHeight()" onmousemove="document.getElementById('calculator').blur()">
+	<div id="site">
+	<header><a href="index.html"><img align="center" width="800px" src="images/header.png"></a></header>
+	
+	<nav>
+		<ul>
+			<li><a href="index.html">Начало</a></li>
+			<li><a href="about.html">За фирмата</a></li>
+			<li><a href="owner.html">За собственика &#8681 </a>
+				<ul>
+					<li><a href="owner.html#cv">CV на собственика</a></li>
+					<li><a href="owner.html#favoriteVideo">Любимо видео</a></li>
+					<li><a href="owner.html#favoriteVideo2">Друго любимо видео</a></li>
+					<li><a href="owner.html#favoriteSong">Любима песен</a></li>
+					<li><a href="owner.html#favoriteMath">"Любима" задача</a></li>
+					<li><a href="owner.html#favoritePage">Любима страница</a></li>
+				</ul>
+			</li>
+			<li><a href="products.html">Продукти</a></li>
+			<li><a href="feedback.html">Мнения</a></li>
+			<li><a href="calculator.html">Калкулатор</a></li>
+			<li><a href="game.html">Игра</a></li>
+		</ul>
+	</nav>
+	
+	<div id="content">
+		<section id="section">
+			<h1>Калкулатор</h1>
+			
+			<p style="float: right; width: 250px"><strong>За ваше удобство можете да използвате клавиатурата си.</strong><br><br>
+			Цените в онлайн магазина са без ДДС. За това решихме да направим калкулатор, с който много лесно можете да изчислите стойността на дадена стока с нейното ДДС.
+			<br><br><em>Например: стоката струва 100лв без ДДС, с ДДС ще струва 120лв.</em><br><br>
+			Погрижихме се за вас и направихме калкулатор, който да изчислява това вместо вас.
+			С бутона <strong style="border: 1px solid black; background-color: #FF9933">+ ДДС</strong> на калкулатора можете лесно да изчислите стойността на дадена стока с нейното ДДС. Освен това, калкулатора съдържа четирите основни аритметични операции <em>(+, -, *, /)</em>.</p>
+			
+			<table id="calculator" tabindex="-1"> <!--tabindex - без него не може да се фокусира елемента в повечето браузъри-->
+				<tr>
+					<td colspan=4><input id="display" type="text" style="height: 100%; width: 98%; font-size: 40px; text-align: right" placeholder="0" readonly></td>
+					<td id="btnC" onClick="buttonPress(this)">C</td>
+				</tr>
+				<tr>
+					<td id="btn1" onClick="buttonPress(this)">1</td>
+					<td id="btn2" onClick="buttonPress(this)">2</td>
+					<td id="btn3" onClick="buttonPress(this)">3</td>
+					<td id="btnPl" onClick="buttonPress(this)">+</td>
+					<td id="btnMn" onClick="buttonPress(this)">-</td>
+				</tr>
+				<tr>
+					<td id="btn4" onClick="buttonPress(this)">4</td>
+					<td id="btn5" onClick="buttonPress(this)">5</td>
+					<td id="btn6" onClick="buttonPress(this)">6</td>
+					<td id="btnMul" onClick="buttonPress(this)">*</td>
+					<td id="btnDiv" onClick="buttonPress(this)">/</td>
+				</tr>
+				<tr>
+					<td id="btn7" onClick="buttonPress(this)">7</td>
+					<td id="btn8" onClick="buttonPress(this)">8</td>
+					<td id="btn9" onClick="buttonPress(this)">9</td>
+					<td id="btnDds" onClick="buttonPress(this)" colspan=2>+ ДДС</td>
+				</tr>
+				<tr>
+					<td id="btn0" onClick="buttonPress(this)" colspan=2>0</td>
+					<td id="btnDec" onClick="buttonPress(this)">.</td>
+					<td id="btnEq" onClick="buttonPress(this)" colspan=2>=</td>
+				</tr>
+			</table>
+		</section>
+	
+		<aside id="aside">
+			<h1>Новини</h1>
+			<ul>
+				<li>Добре дошли в сайта!</li>
+				<li>Приятно пазаруване</li>
+				<li>Промоция на голяма част от продуктите</li>
+			</ul>
+		</aside>
+	</div>
+	
+	<footer><strong><a href="https://www.facebook.com/kaloyanvelichkov" target="_blank">Калоян Величков</a></strong><br><strong>Фак. номер:</strong> <em>1501261021</em><br><strong>Специалност:</strong> <em>Информатика</em><br><strong><em><a href="https://www.uni-plovdiv.bg/" target="_blank">ПУ "Паисий Хилендарски"</a> - <a href="http://fmi.uni-plovdiv.bg/" target="_blank">ФМИ</a></em></strong></footer>
+	
+	</div>
+</body>
+</html>

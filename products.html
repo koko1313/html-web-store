@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Продукти | Някаква фирма</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="icon" href="images/favicon.ico">
+	<script type="text/javascript" src="script.js"></script>
+</head>
+<body onLoad="equalHeight(); checkForPromo()">
+	<div id="site">
+	<header><a href="index.html"><img align="center" width="800px" src="images/header.png"></a></header>
+	
+	<nav>
+		<ul>
+			<li><a href="index.html">Начало</a></li>
+			<li><a href="about.html">За фирмата</a></li>
+			<li><a href="owner.html">За собственика &#8681 </a>
+				<ul>
+					<li><a href="owner.html#cv">CV на собственика</a></li>
+					<li><a href="owner.html#favoriteVideo">Любимо видео</a></li>
+					<li><a href="owner.html#favoriteVideo2">Друго любимо видео</a></li>
+					<li><a href="owner.html#favoriteSong">Любима песен</a></li>
+					<li><a href="owner.html#favoriteMath">"Любима" задача</a></li>
+					<li><a href="owner.html#favoritePage">Любима страница</a></li>
+				</ul>
+			</li>
+			<li><a href="products.html">Продукти</a></li>
+			<li><a href="feedback.html">Мнения</a></li>
+			<li><a href="calculator.html">Калкулатор</a></li>
+			<li><a href="game.html">Игра</a></li>
+		</ul>
+	</nav>
+	<div id="content">
+		<section id="section">
+			
+			<div id="filter">
+				<strong>Филтър:</strong> 
+				<select id="selectFilter" onChange="filter(this.value)">
+					<option name="all" value="all" selected>Всички</option>
+					<option name="sofa" value="sofa">Дивани</option>
+					<option name="table" value="table">Маси</option>
+					<option name="chair" value="chair">Столове</option>
+					<option name="cabinet" value="cabinet">Шкафове</option>
+					<option name="wardrobe" value="wardrobe">Гардероби</option>
+					<option name="bed" value="bed">Легла</option>
+					<option name="studyTable" value="studyTable">Бюра</option>
+				</select>
+			</div>
+		
+			<h1>Продукти</h1>
+			
+			<ul>
+				<li>Изберете изображението за да го видите в по-голям размер.</li>
+				<li>Използвайте филтъра за по-удобно разглеждане.</li>
+				<li>Продуктите са без ДДС. Използвайте <a style="color: blue; text-decoration: underline" href="calculator.html">калкулатора</a>, за да изчислите ДДС-то по-лесно.</li>
+				<li>Издърпайте желаните продукти в <a style="color: blue; text-decoration: underline" href="#" onClick="showCart()">количката</a>.</li>
+			</ul>
+			<p id="noFoundItem" style="color: red; display: none"><strong>В момента нямаме <span id="searchProduct"></span>. Ще получим нови мебели скоро. Извиняваме се за причиненото неудобството.</strong></p>
+			
+			<div id="bigImage"></div>
+			
+			<div id="cart" ondrop="drop(event)" ondragover="allowDrop(event)">
+				<strong><u>Количка</u></strong>
+				<button style="position: absolute; right: 5px" onClick="hide('cart')">Затвори количката</button>
+				<hr>
+				<div id="cartProducts" style="height: 120px; overflow: auto"></div>
+				<hr>
+				<div id="cartTotalPrice"></div>
+				<button style="position: absolute; left: 5px; bottom: 5px" onClick="buy()">Поръчай</button>
+				<button style="position: absolute; right: 5px; bottom: 5px" onClick="cartEmpty()">Изпразни количката</button>
+			</div>
+			
+			<div id="products">
+				
+				<div draggable="true" ondragstart="drag(event)" id="chair1" class="chair" onClick="showImage(childNodes[1].innerHTML, childNodes[3].src, childNodes[5].innerHTML)">
+					<p class="productName">Стол 1</p>
+					<img src="images/chair1.jpg" draggable="false">
+					<p class="price">75</p>
+					<p class="promo">-20%</p>
+				</div>
+				
+				<div draggable="true" ondragstart="drag(event)" id="table1" class="table" onClick="showImage(childNodes[1].innerHTML, childNodes[3].src, childNodes[5].innerHTML)">
+					<p class="productName">Маса 1</p>
+					<img src="images/table1.jpg" draggable="false">
+					<p class="price">350</p>
+				</div>
+				
+				<div draggable="true" ondragstart="drag(event)" id="chair2" class="chair" onClick="showImage(childNodes[1].innerHTML, childNodes[3].src, childNodes[5].innerHTML)">
+					<p class="productName">Стол 2</p>
+					<img src="images/chair2.jpg" draggable="false">
+					<p class="price">98</p>
+				</div>
+				
+				<div draggable="true" ondragstart="drag(event)" id="wardrobe1" class="wardrobe" onClick="showImage(childNodes[1].innerHTML, childNodes[3].src, childNodes[5].innerHTML)">
+					<p class="productName">Гардероб 1</p>
+					<img src="images/wardrobe1.jpg" draggable="false">
+					<p class="price">880</p>
+				</div>
+				
+				<div draggable="true" ondragstart="drag(event)" id="sofa1" class="sofa" onClick="showImage(childNodes[1].innerHTML, childNodes[3].src, childNodes[5].innerHTML)">
+					<p class="productName">Диван 1</p>
+					<img src="images/sofa1.jpg" draggable="false">
+					<p class="price">500</p>
+				</div>
+				
+				<div draggable="true" ondragstart="drag(event)" id="sofa2" class="sofa" onClick="showImage(childNodes[1].innerHTML, childNodes[3].src, childNodes[5].innerHTML)">
+					<p class="productName">Диван 2</p>
+					<img src="images/sofa2.jpg" draggable="false">
+					<p class="price">435</p>
+				</div>
+				
+				<div draggable="true" ondragstart="drag(event)" id="chair3" class="chair" onClick="showImage(childNodes[1].innerHTML, childNodes[3].src, childNodes[5].innerHTML)">
+					<p class="productName">Стол 3</p>
+					<img src="images/chair3.jpg" draggable="false">
+					<p class="price">200</p>
+				</div>
+				
+				<div draggable="true" ondragstart="drag(event)" id="wardrobe2" class="wardrobe" onClick="showImage(childNodes[1].innerHTML, childNodes[3].src, childNodes[5].innerHTML)">
+					<p class="productName">Гардероб 2</p>
+					<img src="images/wardrobe2.jpg" draggable="false">
+					<p class="price">600</p>
+					<p class="promo">-40%</p>
+				</div>
+				
+				<div draggable="true" ondragstart="drag(event)" id="bed1" class="bed" onClick="showImage(childNodes[1].innerHTML, childNodes[3].src, childNodes[5].innerHTML)">
+					<p class="productName">Легло 1</p>
+					<img src="images/bed1.jpg" draggable="false">
+					<p class="price">380</p>
+					<p class="promo">-30%</p>
+				</div>
+				
+				<div draggable="true" ondragstart="drag(event)" id="chair4" class="chair" onClick="showImage(childNodes[1].innerHTML, childNodes[3].src, childNodes[5].innerHTML)">
+					<p class="productName">Стол 4</p>
+					<img src="images/chair4.jpg" draggable="false">
+					<p class="price">100</p>
+					<p class="promo">-10%</p>
+				</div>
+				
+				<div draggable="true" ondragstart="drag(event)" id="table2" class="table" onClick="showImage(childNodes[1].innerHTML, childNodes[3].src, childNodes[5].innerHTML)">
+					<p class="productName">Маса 2</p>
+					<img src="images/table2.jpg" draggable="false">
+					<p class="price">200</p>
+					<p class="promo">-15%</p>
+				</div>
+				
+				<div draggable="true" ondragstart="drag(event)" id="sofa3" class="sofa" onClick="showImage(childNodes[1].innerHTML, childNodes[3].src, childNodes[5].innerHTML)">
+					<p class="productName">Диван 3</p>
+					<img src="images/sofa3.jpg" draggable="false">
+					<p class="price">1990</p>
+					<p class="promo">-50%</p>
+				</div>
+				
+				<div draggable="true" ondragstart="drag(event)" id="wardrobe3" class="wardrobe" onClick="showImage(childNodes[1].innerHTML, childNodes[3].src, childNodes[5].innerHTML)">
+					<p class="productName">Гардероб 3</p>
+					<img src="images/wardrobe3.jpg" draggable="false">
+					<p class="price">700</p>
+				</div>
+			</div>
+			<!--замъглява фона, когато е отворено голямото изображение-->
+			<div id="fade"></div>
+		</section>
+	
+		<aside id="aside">
+			<h1>Новини</h1>
+			<ul>
+				<li>Добре дошли в сайта!</li>
+				<li>Приятно пазаруване</li>
+				<li>Промоция на голяма част от продуктите</li>
+			</ul>
+		</aside>
+	</div>
+	
+	<footer><strong><a href="https://www.facebook.com/kaloyanvelichkov" target="_blank">Калоян Величков</a></strong><br><strong>Фак. номер:</strong> <em>1501261021</em><br><strong>Специалност:</strong> <em>Информатика</em><br><strong><em><a href="https://www.uni-plovdiv.bg/" target="_blank">ПУ "Паисий Хилендарски"</a> - <a href="http://fmi.uni-plovdiv.bg/" target="_blank">ФМИ</a></em></strong></footer>
+	
+	</div>
+</body>
+</html>

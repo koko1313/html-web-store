@@ -1,0 +1,77 @@
+#clock {
+  border-radius: 50%;
+  background-color: #ccff33;
+  border: 3px solid #006600;
+  background-size: 88%;
+  height: 400px;
+  width: 400px;
+  position: relative;
+  margin: 0 auto;
+}
+
+#minutes-container, #hours-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+#hours {
+  background: #0033FF;
+  height: 20%;
+  left: 48.75%;
+  position: absolute;
+  top: 30%;
+  transform-origin: 50% 100%;
+  width: 2.5%;
+  border-radius: 10px;
+}
+
+#minutes {
+  background: #006600;
+  height: 40%;
+  left: 49%;
+  position: absolute;
+  top: 10%;
+  transform-origin: 50% 100%;
+  width: 2%;
+  border-radius: 10px;
+}
+
+#hoursNumbers div{
+	position: absolute;
+	font-size: 30px;
+	font-weight: bold;
+}
+
+#h12 {color: #0033FF}
+
+#myCanvas {margin: 0 auto}
+
+#canvasPoint {
+	position: absolute;
+	top: 47.5%;
+	left: 47.5%;
+}
+
+#canvas {
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	display: flex;
+    align-items: center;
+}
+
+#h1{ top: 		05%; 	right: 	25%}
+#h2{ top: 		22%; 	right: 	08%}
+#h3{ top: 		45%; 	right: 	00%}
+#h4{ bottom: 	22%; 	right: 	08%}
+#h5{ bottom:	05%; 	right: 	25%}
+#h6{ bottom: 	00%; 	left: 	47%}
+#h7{ bottom: 	05%;	left: 	25%}
+#h8{ bottom: 	22%;	left: 	08%}
+#h9{ top: 		45%; 	left: 	00%}
+#h10{top: 		22%;	left: 	08%}
+#h11{top: 		05%;	left: 	25%}
+#h12{top: 		00%;	left: 	47%}

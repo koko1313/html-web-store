@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Игра | Някаква фирма</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="icon" href="images/favicon.ico">
+	<script type="text/javascript" src="script.js"></script>
+	<script type="text/javascript" src="gameScript.js"></script>
+</head>
+<body onLoad="equalHeight(); setRandomNumbers(); document.getElementById('game').onselectstart = function() {return false;}">
+<div id="site">
+	<header><a href="index.html"><img align="center" width="800px" src="images/header.png"></a></header>
+	
+	<nav>
+		<ul>
+			<li><a href="index.html">Начало</a></li>
+			<li><a href="about.html">За фирмата</a></li>
+			<li><a href="owner.html">За собственика &#8681 </a>
+				<ul>
+					<li><a href="owner.html#cv">CV на собственика</a></li>
+					<li><a href="owner.html#favoriteVideo">Любимо видео</a></li>
+					<li><a href="owner.html#favoriteVideo2">Друго любимо видео</a></li>
+					<li><a href="owner.html#favoriteSong">Любима песен</a></li>
+					<li><a href="owner.html#favoriteMath">"Любима" задача</a></li>
+					<li><a href="owner.html#favoritePage">Любима страница</a></li>
+				</ul>
+			</li>
+			<li><a href="products.html">Продукти</a></li>
+			<li><a href="feedback.html">Мнения</a></li>
+			<li><a href="calculator.html">Калкулатор</a></li>
+			<li><a href="game.html">Игра</a></li>
+		</ul>
+	</nav>
+	
+	<div id="content">
+		<section id="section">
+			<h1>Игра</h1>
+			<p>Игра за развлечение. Подредете пъзела.</p>
+			<center>
+			<select id="choosePuzzle" onChange="puzzleChange(this.value)">
+				<option name="puzzle1" value="puzzle1" selected>Пъзел 1</option>
+				<option name="puzzle2" value="puzzle2">Пъзел 2</option>
+			</select>
+			<div id="timer" style="display:inline">0 сек</div><br>
+			<input type="checkbox" id="show_hide_numbers" onChange="show_hide_numbers()" checked> Покажи номерата на частите на пъзела
+			</center>
+			<table id="game" border="1">
+				<tr>
+					<td><div id="r1c1" ondragstart="dragGame(event)"></div></td>
+					<td><div id="r1c2" ondragstart="dragGame(event)"></div></td>
+					<td><div id="r1c3" ondragstart="dragGame(event)"></div></td>
+					<td><div id="r1c4" ondragstart="dragGame(event)"></div></td>
+				</tr>
+				<tr>
+					<td><div id="r2c1" ondragstart="dragGame(event)"></div></td>
+					<td><div id="r2c2" ondragstart="dragGame(event)"></div></td>
+					<td><div id="r2c3" ondragstart="dragGame(event)"></div></td>
+					<td><div id="r2c4" ondragstart="dragGame(event)"></div></td>
+				</tr>
+				<tr>
+					<td><div id="r3c1" ondragstart="dragGame(event)"></div></td>
+					<td><div id="r3c2" ondragstart="dragGame(event)"></div></td>
+					<td><div id="r3c3" ondragstart="dragGame(event)"></div></td>
+					<td><div id="r3c4" ondragstart="dragGame(event)"></div></td>
+				</tr>
+				<tr>
+					<td><div id="r4c1" ondragstart="dragGame(event)"></div></td>
+					<td><div id="r4c2" ondragstart="dragGame(event)"></div></td>
+					<td><div id="r4c3" ondragstart="dragGame(event)"></div></td>
+					<td><div id="r4c4" ondragstart="dragGame(event)"></div></td>
+				</tr>
+				<tr><td colspan="4"><input type="button" id="gameButton" onClick="checkGame()" value="Готово"></td></tr>
+			</table>
+		</section>
+	
+		<aside id="aside">
+			<h1>Новини</h1>
+			<ul>
+				<li>Добре дошли в сайта!</li>
+				<li>Приятно пазаруване</li>
+				<li>Промоция на голяма част от продуктите</li>
+			</ul>
+		</aside>
+	</div>
+	
+	<footer><strong><a href="https://www.facebook.com/kaloyanvelichkov" target="_blank">Калоян Величков</a></strong><br><strong>Фак. номер:</strong> <em>1501261021</em><br><strong>Специалност:</strong> <em>Информатика</em><br><strong><em><a href="https://www.uni-plovdiv.bg/" target="_blank">ПУ "Паисий Хилендарски"</a> - <a href="http://fmi.uni-plovdiv.bg/" target="_blank">ФМИ</a></em></strong></footer>
+	
+	</div>
+</body>
+</html>

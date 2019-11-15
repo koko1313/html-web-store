@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>За собственика | Някаква фирма</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="icon" href="images/favicon.ico">
+	<script type="text/javascript" src="script.js"></script>
+</head>
+<body onLoad="equalHeight()">
+	<div id="site">
+	<header><a href="index.html"><img align="center" width="800px" src="images/header.png"></a></header>
+	
+	<nav>
+		<ul>
+			<li><a href="index.html">Начало</a></li>
+			<li><a href="about.html">За фирмата</a></li>
+			<li><a href="owner.html">За собственика &#8681 </a>
+				<ul>
+					<li><a href="owner.html#cv">CV на собственика</a></li>
+					<li><a href="owner.html#favoriteVideo">Любимо видео</a></li>
+					<li><a href="owner.html#favoriteVideo2">Друго любимо видео</a></li>
+					<li><a href="owner.html#favoriteSong">Любима песен</a></li>
+					<li><a href="owner.html#favoriteMath">"Любима" задача</a></li>
+					<li><a href="owner.html#favoritePage">Любима страница</a></li>
+				</ul>
+			</li>
+			<li><a href="products.html">Продукти</a></li>
+			<li><a href="feedback.html">Мнения</a></li>
+			<li><a href="calculator.html">Калкулатор</a></li>
+			<li><a href="game.html">Игра</a></li>
+		</ul>
+	</nav>
+	
+	<div id="content">
+		<section id="section">
+			<h1>За собственика</h1>
+			
+			<!--CV #######################-->
+			<h2><a name="cv">CV на собственика</a></h2>
+			<p>CV на собственика можете да намерите <a href="cv/cv.html" target="_blank"><u>тук</u></a></p>
+			<!--CV #######################-->
+			
+			<hr width="500px">
+			
+			<!--Видео1 ###################-->
+			<h2><a name="favoriteVideo">Любимо видео</a></h2>
+			<div id="buttons">
+				<button onClick="makeSmall();">По-малко</button>
+				<button onClick="originalSize();">Оригинален размер</button>
+				<button onClick="makeBig();">По-голямо</button>
+			</div> <br>
+			<div style="height: 320px">
+				<video id="myVideo" width="570" controls autoplay muted style="z-index: 5">
+					<source src="video/video1.mp4" type="video/mp4" />
+				</video>
+			</div>
+			<p>Това е кавър в мое изпълнение на една моя много любима песен: <strong>Green Day - <em>Boulevard of Broken Dreams</em></strong></p>
+			<!--Видео1 ###################-->
+		
+			<hr width="500px">
+			
+			<!--Видео2 ###################-->
+			<h2><a name="favoriteVideo2">Второ любимо видео</a></h2>
+			<iframe width="570" height="350" src="https://www.youtube.com/embed/vWZ5il8oXK4" frameborder="0" allowfullscreen></iframe>
+			<p>Мое видео, с което честитя рожденият ден на една моя много любима група</p>
+			<!--Видео2 ###################-->
+			
+			<hr width="500px">
+			
+			<!--Песен ####################-->
+			<h2><a name="favoriteSong">Любима песен</a></h2>
+			<p>AC DC - Dirty Deeds Done Dirt Cheap</p>
+			<audio controls>
+				<source src="video/music.mp3" type="audio/mp3">
+			</audio>
+			<!--Песен ####################-->
+			
+			<hr width="500px">
+			
+			<!--Задача ###################-->
+			<h2><a name="favoriteMath">"Любима" задача</a></h2>
+			<canvas id="zadacha" width="570" height="150"></canvas>
+			<script>
+				//окръжност
+				var c=document.getElementById("zadacha");
+				var ctx=c.getContext("2d");
+				ctx.beginPath();
+				ctx.arc(100,75,50,0,2*Math.PI);
+				ctx.stroke();
+				ctx.closePath();
+				
+				//диаметър
+				ctx.beginPath();
+				ctx.strokeStyle = "#0000ff";
+				ctx.moveTo(70,35);
+				ctx.lineTo(130,115);
+				ctx.stroke();
+				ctx.closePath();
+				
+				//радиус
+				ctx.beginPath();
+				ctx.strokeStyle = "#ff0000";
+				ctx.moveTo(100,75);
+				ctx.lineTo(60,105);
+				ctx.stroke();
+				ctx.closePath();
+				
+				//текст
+				ctx.font="15px Arial";
+				ctx.fillText("A",53,35);
+				ctx.fillText("B",130,130);
+				ctx.fillText("M",45,120);
+				ctx.fillText("O",105,75);
+				ctx.fillText("r",90,58);
+				ctx.fillText("r",120,95);
+				ctx.fillText("r",85,105);
+				
+				ctx.fillText("C / d = pi",200,50);
+				ctx.fillText("C = 2 * pi * r",200,75);
+			</script>
+			<!--Задача ###################-->
+			
+			<!--Задача 2 #################-->
+			<svg width="570" height="150">
+				<rect width="200" height="100" style="fill:rgb(255,255,255); stroke-width:5; stroke:rgb(0,0,0)" />
+				<text fill="#000" font-size="20" x="5" y="20">A</text>
+				<text fill="#000" font-size="20" x="180" y="20">B</text>
+				<text fill="#000" font-size="20" x="180" y="90">C</text>
+				<text fill="#000" font-size="20" x="5" y="90">D</text>
+			</svg>
+			<!--Задача 2 #################-->
+			
+			<!--Любима страница ##########-->
+			<h2><a name="favoritePage">Любима страница</a></h2>
+				<object width="570px" height="50px" data="fpage.html"></object>
+			<!--Любима страница ##########-->
+		</section>
+	
+		<aside id="aside">
+			<h1>Новини</h1>
+			<ul>
+				<li>Добре дошли в сайта!</li>
+				<li>Приятно пазаруване</li>
+				<li>Промоция на голяма част от продуктите</li>
+			</ul>
+		</aside>
+	</div>
+	
+	<footer><strong><a href="https://www.facebook.com/kaloyanvelichkov" target="_blank">Калоян Величков</a></strong><br><strong>Фак. номер:</strong> <em>1501261021</em><br><strong>Специалност:</strong> <em>Информатика</em><br><strong><em><a href="https://www.uni-plovdiv.bg/" target="_blank">ПУ "Паисий Хилендарски"</a> - <a href="http://fmi.uni-plovdiv.bg/" target="_blank">ФМИ</a></em></strong></footer>
+	
+	</div>
+</body>
+</html>

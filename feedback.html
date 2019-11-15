@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Мнения | Някаква фирма</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="icon" href="images/favicon.ico">
+	<script type="text/javascript" src="script.js"></script>
+</head>
+<body onLoad="equalHeight()">
+	<div id="site">
+	<header><a href="index.html"><img align="center" width="800px" src="images/header.png"></a></header>
+	
+	<nav>
+		<ul>
+			<li><a href="index.html">Начало</a></li>
+			<li><a href="about.html">За фирмата</a></li>
+			<li><a href="owner.html">За собственика &#8681 </a>
+				<ul>
+					<li><a href="owner.html#cv">CV на собственика</a></li>
+					<li><a href="owner.html#favoriteVideo">Любимо видео</a></li>
+					<li><a href="owner.html#favoriteVideo2">Друго любимо видео</a></li>
+					<li><a href="owner.html#favoriteSong">Любима песен</a></li>
+					<li><a href="owner.html#favoriteMath">"Любима" задача</a></li>
+					<li><a href="owner.html#favoritePage">Любима страница</a></li>
+				</ul>
+			</li>
+			<li><a href="products.html">Продукти</a></li>
+			<li><a href="feedback.html">Мнения</a></li>
+			<li><a href="calculator.html">Калкулатор</a></li>
+			<li><a href="game.html">Игра</a></li>
+		</ul>
+	</nav>
+	
+	<div id="content">
+		<section id="section">
+			<h1>Мнения</h1>
+			<p>Полетата, маркирани с <span style="color: red">*</span> са задължителни.</p>
+			<form action="mailto:kaloyan.velichkov@abv.bg" method="post">
+				<table>
+					<tr>
+						<td align="right">Име<span style="color: red">*</span></td>
+						<td><input type="text" name="name" autofocus required></td>
+					</tr>
+					<tr>
+						<td align="right">E-mail<span style="color: red">*</span></td>
+						<td><input type="email" name="email" required></td>
+					</tr>
+					<tr>
+						<td align="right">Телефон</td>
+						<td><input type="tel" name="tel"></td>
+					</tr>
+					<tr>
+						<td align="right">Дата на раждане</td>
+						<td><input type="date" name="date"></td>
+					</tr>
+					<tr>
+						<td align="right">Мнението ви е за продукт:<span style="color: red">*</span></td>
+						<td>
+							<select required>
+								<option name="" value="" disabled selected>Изберете от списъка</option>
+								<optgroup label="Дивани">
+									<option name="sofa1" value="sofa1">Диван 1</option>
+									<option name="sofa2" value="sofa2">Диван 2</option>
+									<option name="sofa3" value="sofa3">Диван 3</option>
+								</optgroup>
+								<optgroup label="Маси">
+									<option name="table1" value="table1">Маса 1</option>
+									<option name="table2" value="table2">Маса 2</option>
+								</optgroup>
+								<optgroup label="Столове">
+									<option name="chair1" value="chair1">Стол 1</option>
+									<option name="chair2" value="chair2">Стол 2</option>
+									<option name="chair3" value="chair3">Стол 3</option>
+									<option name="chair4" value="chair4">Стол 4</option>
+								</optgroup>
+								<optgroup label="Гардероби">
+									<option name="wardrobe1" value="wardrobe1">Гардероб 1</option>
+									<option name="wardrobe2" value="wardrobe2">Гардероб 2</option>
+									<option name="wardrobe3" value="wardrobe3">Гардероб 3</option>
+								</optgroup>
+								<optgroup label="Легла">
+									<option name="bed1" value="bed1">Легло 1</option>
+								</optgroup>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td align="right">Пол</td>
+						<td>
+							<input type="radio" name="gender" value="male"> Мъж<br>
+							<input type="radio" name="gender" value="female"> Жена<br>
+						</td>
+					</tr>
+					<tr>
+						<td align="right" valign="top">Мнение<span style="color: red">*</span></td>
+						<td><textarea rows="10" cols="40" name="opinion" required></textarea></td>
+					</tr>
+					<tr>
+						<td align="right">
+							<input type="checkbox" name="i_have_18" value="i_have_18" required>
+						</td>
+						<td>Имам навършена 18 - годишна възраст<span style="color: red">*</span></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>
+							<input type="submit" value="Изпрати мнението">
+							<input type="reset" value="Изчисти">
+						</td>
+					</tr>
+				</table>
+			</form>
+		</section>
+	
+		<aside id="aside">
+			<h1>Новини</h1>
+			<ul>
+				<li>Добре дошли в сайта!</li>
+				<li>Приятно пазаруване</li>
+				<li>Промоция на голяма част от продуктите</li>
+			</ul>
+		</aside>
+	</div>
+	
+	<footer><strong><a href="https://www.facebook.com/kaloyanvelichkov" target="_blank">Калоян Величков</a></strong><br><strong>Фак. номер:</strong> <em>1501261021</em><br><strong>Специалност:</strong> <em>Информатика</em><br><strong><em><a href="https://www.uni-plovdiv.bg/" target="_blank">ПУ "Паисий Хилендарски"</a> - <a href="http://fmi.uni-plovdiv.bg/" target="_blank">ФМИ</a></em></strong></footer>
+	
+	</div>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Поръчки | Някаква фирма</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="icon" href="images/favicon.ico">
+	<script type="text/javascript" src="script.js"></script>
+	<script>
+	var link = decodeURIComponent(window.location.href); // взимаме линка и го декодваме, защото някои браузъри го енкодват :P
+
+	if(link.search("#") == -1) { // ако няма поръчани продукти
+		alert("В момента вашата количка е празна, моля посетете страницата Продукти, за да изберете желаните артикули");
+		parent.location="products.html";
+	}
+
+	link = link.split("#"); // разделяме линка на 2 части link[1] е това, което ни интересува
+	var artikulAll = link[1].split(";"); // разделяме отделните поръчани артикули, променливата съдържа всичката информация заедно
+	var artikul = new Array; // двумерен масив, съдържащ всички поръчани продукти, количеството и цената им
+
+
+	for(var i = 0; i < artikulAll.length; i++){
+		artikul[i] = artikulAll[i].split(",");
+	}
+
+	//Отпечатваме списъка с поръчаните продукти
+	var totalPrice = 0;
+	function showShopList(){
+		document.getElementById("shopList").innerHTML = "<ul>";
+		for(var i = 0; i < artikul.length-1; i++){
+			var product = artikul[i][0];
+			var br = parseInt(artikul[i][1]);
+			var edCena = parseInt(artikul[i][2]);
+			var obshto = br*edCena;
+			document.getElementById("shopList").innerHTML += "<li>" + br + " бр x <strong>" + product + "</strong>, " + edCena + "лв/бр = <strong>" + obshto + "лв</strong></span></li>";
+			totalPrice += obshto;
+		}
+		document.getElementById("shopList").innerHTML += "</ul>";
+		document.getElementById("totalPrice").innerHTML = "<strong>" + totalPrice + "лв</strong>";
+		equalHeight(); // след като отпечатаме списъка, преоразмеряваме сайта
+	}
+	</script>	
+</head>
+<body onLoad="equalHeight(); showShopList()">
+	<div id="site">
+	<header><a href="index.html"><img align="center" width="800px" src="images/header.png"></a></header>
+	
+	<nav>
+		<ul>
+			<li><a href="index.html">Начало</a></li>
+			<li><a href="about.html">За фирмата</a></li>
+			<li><a href="owner.html">За собственика &#8681 </a>
+				<ul>
+					<li><a href="owner.html#cv">CV на собственика</a></li>
+					<li><a href="owner.html#favoriteVideo">Любимо видео</a></li>
+					<li><a href="owner.html#favoriteVideo2">Друго любимо видео</a></li>
+					<li><a href="owner.html#favoriteSong">Любима песен</a></li>
+					<li><a href="owner.html#favoriteMath">"Любима" задача</a></li>
+					<li><a href="owner.html#favoritePage">Любима страница</a></li>
+				</ul>
+			</li>
+			<li><a href="products.html">Продукти</a></li>
+			<li><a href="feedback.html">Мнения</a></li>
+			<li><a href="calculator.html">Калкулатор</a></li>
+			<li><a href="game.html">Игра</a></li>
+		</ul>
+	</nav>
+	
+	<div id="content">
+		<section id="section">
+			<h1>Поръчки</h1>
+			<p>Полетата, маркирани с <span style="color: red">*</span> са задължителни.</p>
+			<form name="form" id="form" onSubmit="return validation()" action="index.html">
+				<table>
+					<tr>
+						<td align="right">Име<span style="color: red">*</span></td>
+						<td><input type="text" name="name" onchange="momentValidation()" placeholder="използвайте кирилица" autocomplete="off" autofocus required></td>
+					</tr>
+					<tr>
+						<td align="right">Мобилен телефон<span style="color: red">*</span></td>
+						<td><input type="tel" name="tel" onchange="momentValidation()" maxlength="10" placeholder="0891234567" autocomplete="off" required></td>
+					</tr>
+					<tr>
+						<td align="right">Адрес за доставка<span style="color: red">*</span></td>
+						<td><input type="text" name="adress" required></td>
+					</tr>
+					<tr>
+						<td align="right">Предпочитана дата за доставка</td>
+						<td><input type="date" name="date_prefered"></td>
+					</tr>
+					<tr>
+						<td align="right">Предпочитан час за доставка</td>
+						<td><input type="time" name="time_prefered"></td>
+					</tr>
+					<tr>
+						<td align="right">Цвят на мебелите</td>
+						<td><input type="color" name="color"></td>
+					</tr>
+					<tr>
+						<td align="right" valign="top">Предстои ви да закупите</td>
+						<td id="shopList" style="background-color: #CCFF99"></td>
+					</tr>
+					<tr>
+						<td align="right">Обща цена</td>
+						<td id="totalPrice"></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>
+							<input type="submit" value="Поръчай">
+							<input type="reset" onClick="document.form.name.style.background='white'; document.form.tel.style.background='white'" value="Изчисти">
+						</td>
+					</tr>
+				</table>
+			</form>
+		</section>
+	
+		<aside id="aside">
+			<h1>Новини</h1>
+			<ul>
+				<li>Добре дошли в сайта!</li>
+				<li>Приятно пазаруване</li>
+				<li>Промоция на голяма част от продуктите</li>
+			</ul>
+		</aside>
+	</div>
+	
+	<footer><strong><a href="https://www.facebook.com/kaloyanvelichkov" target="_blank">Калоян Величков</a></strong><br><strong>Фак. номер:</strong> <em>1501261021</em><br><strong>Специалност:</strong> <em>Информатика</em><br><strong><em><a href="https://www.uni-plovdiv.bg/" target="_blank">ПУ "Паисий Хилендарски"</a> - <a href="http://fmi.uni-plovdiv.bg/" target="_blank">ФМИ</a></em></strong></footer>
+	
+	</div>
+</body>
+</html>

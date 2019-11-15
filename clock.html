@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="clockStyle.css">
+	<script type="text/javascript" src="clockScript.js"></script>
+</head>
+<body onLoad="minutesMove();">
+	<div id="clock">
+		<div id="hours-container"><div id="hours"></div></div>
+		<div id="minutes-container"><div id="minutes"></div></div>
+		<div id="hoursNumbers">
+			<div id="h1">1</div>
+			<div id="h2">2</div>
+			<div id="h3">3</div>
+			<div id="h4">4</div>
+			<div id="h5">5</div>
+			<div id="h6">6</div>
+			<div id="h7">7</div>
+			<div id="h8">8</div>
+			<div id="h9">9</div>
+			<div id="h10">10</div>
+			<div id="h11">11</div>
+			<div id="h12">12</div>
+		</div>
+		<div id="canvas">
+			<canvas id="myCanvas" width="300" height="300"></canvas>
+			<canvas id="canvasPoint" width="20" height="20"></canvas>
+		</div>
+		<script>
+			var c = document.getElementById("canvasPoint");
+			var ctx = c.getContext("2d");
+			ctx.beginPath();
+			ctx.arc(10, 10, 10, 0, 2 * Math.PI);
+			ctx.fill();
+		</script>
+	</div>
+</body>
+</html>
